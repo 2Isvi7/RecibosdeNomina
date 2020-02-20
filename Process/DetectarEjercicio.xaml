@@ -5,7 +5,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>631,1106</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>631,1007</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>DetectarEjercicio_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="21">
@@ -55,7 +55,7 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="DetectarEjercicio" sap:VirtualizedContainerService.HintSize="611,1046" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="DetectarEjercicio" sap:VirtualizedContainerService.HintSize="611,947" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="DictionaryMonth" />
       <Variable x:TypeArguments="x:String" Name="pdfText" />
@@ -137,6 +137,5 @@
         <InArgument x:TypeArguments="x:String">[DictionaryMonth(ArrayMonth(1).ToString)]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="569,59" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[File]" />
   </Sequence>
 </Activity>
