@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>396,1846</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>857,5589</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>DetectarEjercicio_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="23">
@@ -60,7 +60,7 @@
       <AssemblyReference>UiPath.Excel</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="DetectarEjercicio" sap:VirtualizedContainerService.HintSize="376,1786" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="DetectarEjercicio" sap:VirtualizedContainerService.HintSize="837,5489" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="DictionaryMonth" />
       <Variable x:TypeArguments="x:String" Name="pdfText" />
@@ -71,6 +71,8 @@
       <Variable x:TypeArguments="sd:DataTable" Name="BeeckerList" />
       <Variable x:TypeArguments="sd:DataTable" Name="TalentoList" />
       <Variable x:TypeArguments="x:Boolean" Name="Encontrado" />
+      <Variable x:TypeArguments="x:Int32" Name="IndexEnviados" />
+      <Variable x:TypeArguments="x:Int32" Name="NoEnviadosInde" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -78,7 +80,7 @@
         <x:Boolean x:Key="IsPinned">False</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign DisplayName="Build Dictionary Month" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+    <Assign DisplayName="Build Dictionary Month" sap:VirtualizedContainerService.HintSize="795,60" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">[DictionaryMonth]</OutArgument>
       </Assign.To>
@@ -86,8 +88,8 @@
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">[New Dictionary(of String, String) from {{"Ene","Enero del "},{"Feb","Febrero del "},{"Mar","Marzo del "},{"Abr","Abril del "},{"May","Mayo del "},{"Jun","Junio del "},{"Jul","Julio del "},{"Ago","Agosto del "},{"Sep","Septiembre del "},{"Oct","Octubre del "},{"Nov","Noviembre del "},{"Dic","Diciembre del "}}]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:ReadPDFText PreserveFormatting="{x:Null}" DisplayName="Read PDF Text from Recibidos" FileName="[in_TransactionItem(0).ToString]" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ReadPDFText_1" Range="All" Text="[pdfText]" />
-    <If Condition="[pdfText.Contains(&quot;BEECKER&quot;)]" DisplayName="PDF Contains 'Beecker'" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="If_2">
+    <ui:ReadPDFText PreserveFormatting="{x:Null}" DisplayName="Read PDF Text from Recibidos" FileName="[in_TransactionItem(0).ToString]" sap:VirtualizedContainerService.HintSize="795,59" sap2010:WorkflowViewState.IdRef="ReadPDFText_1" Range="All" Text="[pdfText]" />
+    <If Condition="[pdfText.Contains(&quot;BEECKER&quot;)]" DisplayName="PDF Contains 'Beecker'" sap:VirtualizedContainerService.HintSize="795,51" sap2010:WorkflowViewState.IdRef="If_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -115,7 +117,7 @@
         </Assign>
       </If.Else>
     </If>
-    <If Condition="[in_TransactionItem(0).ToString.Contains(&quot;1er&quot;) or in_TransactionItem(0).ToString.Contains(&quot;1Qna&quot;)]" DisplayName="Obtiene Numero de Quincena" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="If_3">
+    <If Condition="[in_TransactionItem(0).ToString.Contains(&quot;1er&quot;) or in_TransactionItem(0).ToString.Contains(&quot;1Qna&quot;)]" DisplayName="Obtiene Numero de Quincena" sap:VirtualizedContainerService.HintSize="795,51" sap2010:WorkflowViewState.IdRef="If_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -143,7 +145,7 @@
         </Assign>
       </If.Else>
     </If>
-    <Assign DisplayName="Create Array for TextPDF" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+    <Assign DisplayName="Create Array for TextPDF" sap:VirtualizedContainerService.HintSize="795,60" sap2010:WorkflowViewState.IdRef="Assign_5">
       <Assign.To>
         <OutArgument x:TypeArguments="s:String[]">[ArrayMonth]</OutArgument>
       </Assign.To>
@@ -151,7 +153,7 @@
         <InArgument x:TypeArguments="s:String[]">[Split(pdfText,"/")]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign DisplayName="Find Month" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+    <Assign DisplayName="Find Month" sap:VirtualizedContainerService.HintSize="795,60" sap2010:WorkflowViewState.IdRef="Assign_4">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[File]</OutArgument>
       </Assign.To>
@@ -159,7 +161,7 @@
         <InArgument x:TypeArguments="x:String">[File +DictionaryMonth(ArrayMonth(1).ToString)]</InArgument>
       </Assign.Value>
     </Assign>
-    <While DisplayName="Obtiene Año actual del Archivo" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="While_1">
+    <While DisplayName="Obtiene Año actual del Archivo" sap:VirtualizedContainerService.HintSize="795,51" sap2010:WorkflowViewState.IdRef="While_1">
       <While.Variables>
         <Variable x:TypeArguments="x:Int32" Default="2018" Name="year" />
       </While.Variables>
@@ -205,7 +207,7 @@
         </Assign>
       </Sequence>
     </While>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Obtiene Listas de Empleados" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" Visible="False" WorkbookPath="Data\Input\listaEmpleados.xlsx">
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Obtiene Listas de Empleados" sap:VirtualizedContainerService.HintSize="795,51" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" Visible="False" WorkbookPath="Data\Input\listaEmpleados.xlsx">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
@@ -241,7 +243,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ExcelApplicationScope>
-    <ui:ReadTextFile Content="[mensajetxt]" DisplayName="Lee Mensaje" FileName="Data\Input\mensaje.txt" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="ReadTextFile_2">
+    <ui:ReadTextFile Content="[mensajetxt]" DisplayName="Lee Mensaje" FileName="Data\Input\mensaje.txt" sap:VirtualizedContainerService.HintSize="795,132" sap2010:WorkflowViewState.IdRef="ReadTextFile_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -249,7 +251,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ReadTextFile>
-    <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_22">
+    <Assign sap:VirtualizedContainerService.HintSize="795,60" sap2010:WorkflowViewState.IdRef="Assign_22">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[mensajetxt]</OutArgument>
       </Assign.To>
@@ -257,7 +259,7 @@
         <InArgument x:TypeArguments="x:String">[mensajetxt.Replace("file",file)]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign DisplayName="Valida encontró  usuario" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_34">
+    <Assign DisplayName="Valida encontró  usuario" sap:VirtualizedContainerService.HintSize="795,60" sap2010:WorkflowViewState.IdRef="Assign_34">
       <Assign.To>
         <OutArgument x:TypeArguments="x:Boolean">[Encontrado]</OutArgument>
       </Assign.To>
@@ -265,26 +267,42 @@
         <InArgument x:TypeArguments="x:Boolean">False</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[BeeckerList]" DisplayName="Busca en Empleados Beeckerco" sap:VirtualizedContainerService.HintSize="334,214" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+    <Assign DisplayName="Index Enviados" sap:VirtualizedContainerService.HintSize="795,60" sap2010:WorkflowViewState.IdRef="Assign_37">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Int32">[IndexEnviados]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Int32">2</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Index No enviados" sap:VirtualizedContainerService.HintSize="795,60" sap2010:WorkflowViewState.IdRef="Assign_38">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Int32">[NoEnviadosInde]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Int32">2</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[BeeckerList]" DisplayName="Busca en Empleados Beeckerco" sap:VirtualizedContainerService.HintSize="795,1640" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Empleado" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_12">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="663,1492" sap2010:WorkflowViewState.IdRef="Sequence_12">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="currentEmpleado" />
               <Variable x:TypeArguments="x:String" Name="currentCorreo" />
             </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <If Condition="[pdfText.Contains(Empleado(0).ToString)]" sap:VirtualizedContainerService.HintSize="703,1496" sap2010:WorkflowViewState.IdRef="If_10">
+            <If Condition="[pdfText.Contains(Empleado(0).ToString)]" sap:VirtualizedContainerService.HintSize="621,1400" sap2010:WorkflowViewState.IdRef="If_10">
               <If.Then>
-                <Sequence sap:VirtualizedContainerService.HintSize="558,1348" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                <Sequence sap:VirtualizedContainerService.HintSize="476,1252" sap2010:WorkflowViewState.IdRef="Sequence_11">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="s:String[]" Name="splitEmpleado" />
                     <Variable x:TypeArguments="x:String" Default="info@talentoit.net" Name="sender" />
@@ -295,7 +313,7 @@
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <Assign sap:VirtualizedContainerService.HintSize="516,60" sap2010:WorkflowViewState.IdRef="Assign_23">
+                  <Assign sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="Assign_23">
                     <Assign.To>
                       <OutArgument x:TypeArguments="s:String[]">[splitEmpleado]</OutArgument>
                     </Assign.To>
@@ -303,7 +321,7 @@
                       <InArgument x:TypeArguments="s:String[]">[Empleado(0).ToString.Split({" "},StringSplitOptions.None)]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Assign sap:VirtualizedContainerService.HintSize="516,60" sap2010:WorkflowViewState.IdRef="Assign_24">
+                  <Assign sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="Assign_24">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[Mensajetxt]</OutArgument>
                     </Assign.To>
@@ -311,7 +329,7 @@
                       <InArgument x:TypeArguments="x:String">["hora "+splitEmpleado(0)+"."+vbCrLf+mensajetxt]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <If Condition="[System.DateTime.Now.ToShortTimeString.Contains(&quot;12:&quot;) or System.DateTime.Now.ToShortTimeString.Contains(&quot;13:&quot;) or System.DateTime.Now.ToShortTimeString.Contains(&quot;14:&quot;) or System.DateTime.Now.ToShortTimeString.Contains(&quot;15:&quot;) or System.DateTime.Now.ToShortTimeString.Contains(&quot;16:&quot;) or System.DateTime.Now.ToShortTimeString.Contains(&quot;17:&quot;) or System.DateTime.Now.ToShortTimeString.Contains(&quot;18:&quot;) or System.DateTime.Now.ToShortTimeString.Contains(&quot;19:&quot;) or System.DateTime.Now.ToShortTimeString.Contains(&quot;20:&quot;) or System.DateTime.Now.ToShortTimeString.Contains(&quot;21:&quot;) or System.DateTime.Now.ToShortTimeString.Contains(&quot;22:&quot;) or System.DateTime.Now.ToShortTimeString.Contains(&quot;23:&quot;)]" DisplayName="Agrega Buenas Tardes/ Buenos días" sap:VirtualizedContainerService.HintSize="516,51" sap2010:WorkflowViewState.IdRef="If_9">
+                  <If Condition="[System.DateTime.Now.ToShortTimeString.Contains(&quot;12:&quot;) or System.DateTime.Now.ToShortTimeString.Contains(&quot;13:&quot;) or System.DateTime.Now.ToShortTimeString.Contains(&quot;14:&quot;) or System.DateTime.Now.ToShortTimeString.Contains(&quot;15:&quot;) or System.DateTime.Now.ToShortTimeString.Contains(&quot;16:&quot;) or System.DateTime.Now.ToShortTimeString.Contains(&quot;17:&quot;) or System.DateTime.Now.ToShortTimeString.Contains(&quot;18:&quot;) or System.DateTime.Now.ToShortTimeString.Contains(&quot;19:&quot;) or System.DateTime.Now.ToShortTimeString.Contains(&quot;20:&quot;) or System.DateTime.Now.ToShortTimeString.Contains(&quot;21:&quot;) or System.DateTime.Now.ToShortTimeString.Contains(&quot;22:&quot;) or System.DateTime.Now.ToShortTimeString.Contains(&quot;23:&quot;)]" DisplayName="Agrega Buenas Tardes/ Buenos días" sap:VirtualizedContainerService.HintSize="434,51" sap2010:WorkflowViewState.IdRef="If_9">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -339,7 +357,7 @@
                       </Assign>
                     </If.Else>
                   </If>
-                  <TryCatch DisplayName="Intenta Enviar Correos" sap:VirtualizedContainerService.HintSize="516,765" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                  <TryCatch DisplayName="Intenta Enviar Correos" sap:VirtualizedContainerService.HintSize="434,669" sap2010:WorkflowViewState.IdRef="TryCatch_2">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -347,7 +365,7 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                     <TryCatch.Try>
-                      <Sequence sap:VirtualizedContainerService.HintSize="478,538" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                      <Sequence sap:VirtualizedContainerService.HintSize="478,793" sap2010:WorkflowViewState.IdRef="Sequence_10">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -372,13 +390,22 @@
                           </ui:CommentOut.Body>
                         </ui:CommentOut>
                         <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="436,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Se ha enviado el recibo a: &quot;+ Empleado(0).ToString]" />
+                        <ui:WriteCell Cell="[&quot;A&quot;+IndexEnviados.ToString]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="436,115" sap2010:WorkflowViewState.IdRef="WriteCell_1" SheetName="Enviados Beecker" Text="[&quot;Se ha enviado el recibo a: &quot;+ Empleado(0).ToString]" WorkbookPath="Data\Output\Bitacora_de_Envios.xlsx" />
+                        <Assign DisplayName="Index Enviados" sap:VirtualizedContainerService.HintSize="436,60" sap2010:WorkflowViewState.IdRef="Assign_39">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Int32">[IndexEnviados]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Int32">[IndexEnviados+1]</InArgument>
+                          </Assign.Value>
+                        </Assign>
                       </Sequence>
                     </TryCatch.Try>
                     <TryCatch.Catches>
-                      <Catch x:TypeArguments="si:IOException" sap:VirtualizedContainerService.HintSize="482,21" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                      <Catch x:TypeArguments="si:IOException" sap:VirtualizedContainerService.HintSize="400,507" sap2010:WorkflowViewState.IdRef="Catch`1_2">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             <x:Boolean x:Key="IsPinned">False</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
@@ -386,12 +413,28 @@
                           <ActivityAction.Argument>
                             <DelegateInArgument x:TypeArguments="si:IOException" Name="exception" />
                           </ActivityAction.Argument>
-                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;No se pudo  enviar recibo a: &quot;+ Empleado(0).ToString]" />
+                          <Sequence sap:VirtualizedContainerService.HintSize="376,438" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;No se pudo  enviar recibo a: &quot;+ Empleado(0).ToString]" />
+                            <ui:WriteCell Cell="[&quot;B&quot;+NoEnviadosInde.ToString]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="334,115" sap2010:WorkflowViewState.IdRef="WriteCell_2" SheetName="Enviados Beecker" Text="[&quot;NO se ha enviado el recibo a: &quot;+ Empleado(0).ToString]" WorkbookPath="Data\Output\Bitacora_de_Envios.xlsx" />
+                            <Assign DisplayName="Index No enviados" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_40">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Int32">[NoEnviadosInde]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Int32">[NoEnviadosInde+1]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </Sequence>
                         </ActivityAction>
                       </Catch>
                     </TryCatch.Catches>
                   </TryCatch>
-                  <Assign sap:VirtualizedContainerService.HintSize="516,60" sap2010:WorkflowViewState.IdRef="Assign_27">
+                  <Assign sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="Assign_27">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[Mensajetxt]</OutArgument>
                     </Assign.To>
@@ -401,7 +444,7 @@
                       </InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Assign DisplayName="Valida encontró  usuario" sap:VirtualizedContainerService.HintSize="516,60" sap2010:WorkflowViewState.IdRef="Assign_35">
+                  <Assign DisplayName="Valida encontró  usuario" sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="Assign_35">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:Boolean">[Encontrado]</OutArgument>
                     </Assign.To>
@@ -422,20 +465,36 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ForEachRow>
-    <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[TalentoList]" DisplayName="Busca en Empleados Talento" sap:VirtualizedContainerService.HintSize="334,214" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
+    <Assign DisplayName="Index Enviados" sap:VirtualizedContainerService.HintSize="795,60" sap2010:WorkflowViewState.IdRef="Assign_41">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Int32">[IndexEnviados]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Int32">2</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Index No enviados" sap:VirtualizedContainerService.HintSize="795,60" sap2010:WorkflowViewState.IdRef="Assign_42">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Int32">[NoEnviadosInde]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Int32">2</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[TalentoList]" DisplayName="Busca en Empleados Talento" sap:VirtualizedContainerService.HintSize="795,2091" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Empleado" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_15">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="745,1943" sap2010:WorkflowViewState.IdRef="Sequence_15">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="currentEmpleado" />
               <Variable x:TypeArguments="x:String" Name="currentCorreo" />
             </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
@@ -447,9 +506,9 @@
                 <InArgument x:TypeArguments="x:String">[mensajetxt.Replace("file",file)]</InArgument>
               </Assign.Value>
             </Assign>
-            <If Condition="[pdfText.Contains(Empleado(0).ToString)]" sap:VirtualizedContainerService.HintSize="703,1496" sap2010:WorkflowViewState.IdRef="If_12">
+            <If Condition="[pdfText.Contains(Empleado(0).ToString)]" sap:VirtualizedContainerService.HintSize="703,1751" sap2010:WorkflowViewState.IdRef="If_12">
               <If.Then>
-                <Sequence sap:VirtualizedContainerService.HintSize="558,1348" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                <Sequence sap:VirtualizedContainerService.HintSize="558,1603" sap2010:WorkflowViewState.IdRef="Sequence_14">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="s:String[]" Name="splitEmpleado" />
                     <Variable x:TypeArguments="x:String" Default="info@talentoit.net" Name="sender" />
@@ -504,7 +563,7 @@
                       </Assign>
                     </If.Else>
                   </If>
-                  <TryCatch DisplayName="Intenta Enviar Correos" sap:VirtualizedContainerService.HintSize="516,765" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+                  <TryCatch DisplayName="Intenta Enviar Correos" sap:VirtualizedContainerService.HintSize="516,1020" sap2010:WorkflowViewState.IdRef="TryCatch_3">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -512,7 +571,7 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                     <TryCatch.Try>
-                      <Sequence sap:VirtualizedContainerService.HintSize="478,538" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                      <Sequence sap:VirtualizedContainerService.HintSize="478,793" sap2010:WorkflowViewState.IdRef="Sequence_13">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -537,6 +596,15 @@
                           </ui:CommentOut.Body>
                         </ui:CommentOut>
                         <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="436,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Se ha enviado el recibo a: &quot;+ Empleado(0).ToString]" />
+                        <ui:WriteCell Cell="[&quot;A&quot;+IndexEnviados.ToString]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="436,115" sap2010:WorkflowViewState.IdRef="WriteCell_3" SheetName="Enviados Talento" Text="[&quot;Se ha enviado el recibo a: &quot;+ Empleado(0).ToString]" WorkbookPath="Data\Output\Bitacora_de_Envios.xlsx" />
+                        <Assign DisplayName="Index Enviados" sap:VirtualizedContainerService.HintSize="436,60" sap2010:WorkflowViewState.IdRef="Assign_43">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Int32">[IndexEnviados]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Int32">[IndexEnviados+1]</InArgument>
+                          </Assign.Value>
+                        </Assign>
                       </Sequence>
                     </TryCatch.Try>
                     <TryCatch.Catches>
@@ -551,12 +619,20 @@
                           <ActivityAction.Argument>
                             <DelegateInArgument x:TypeArguments="si:IOException" Name="exception" />
                           </ActivityAction.Argument>
-                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;No se pudo enviar recibo a: &quot;+ Empleado(0).ToString]" />
+                          <Sequence sap:VirtualizedContainerService.HintSize="376,338" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;No se pudo enviar recibo a: &quot;+ Empleado(0).ToString]" />
+                            <ui:WriteCell Cell="[&quot;B&quot;+IndexEnviados.ToString]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="334,115" sap2010:WorkflowViewState.IdRef="WriteCell_4" SheetName="Enviados Talento" Text="[&quot;No se pudo enviar recibo a: &quot;+ Empleado(0).ToString]" WorkbookPath="Data\Output\Bitacora_de_Envios.xlsx" />
+                          </Sequence>
                         </ActivityAction>
                       </Catch>
                     </TryCatch.Catches>
                   </TryCatch>
-                  <Assign sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="Assign_33">
+                  <Assign sap:VirtualizedContainerService.HintSize="516,60" sap2010:WorkflowViewState.IdRef="Assign_33">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[Mensajetxt]</OutArgument>
                     </Assign.To>
@@ -566,7 +642,7 @@
                       </InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Assign DisplayName="Valida encontró  usuario" sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="Assign_36">
+                  <Assign DisplayName="Valida encontró  usuario" sap:VirtualizedContainerService.HintSize="516,60" sap2010:WorkflowViewState.IdRef="Assign_36">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:Boolean">[Encontrado]</OutArgument>
                     </Assign.To>
@@ -587,7 +663,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ForEachRow>
-    <If Condition="[Encontrado= True]" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="If_13">
+    <If Condition="[Encontrado= True]" sap:VirtualizedContainerService.HintSize="795,51" sap2010:WorkflowViewState.IdRef="If_13">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
